@@ -1,12 +1,9 @@
-GET http://localhost:3000
-foo: bar
-fizz: buzz
-apples: oranges
-red: blue
+###PING ROUTE
+GET http://localhost:3000/ping
 
 ###
 
-POST http://localhost:3000/sample///
+POST http://localhost:3000/ping
 foo: bar
 fizz: buzz
 apples: oranges

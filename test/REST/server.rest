@@ -6,7 +6,11 @@ red: blue
 
 ###
 
-POST http://localhost:3000
+POST http://localhost:3000/sample///
+foo: bar
+fizz: buzz
+apples: oranges
+red: blue
 Content-Type: text/plain
 
 This is the body we are sending

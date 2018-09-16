@@ -1,0 +1,5 @@
+GET http://localhost:3000
+foo: bar
+fizz: buzz
+apples: oranges
+red: blue

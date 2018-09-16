@@ -10,10 +10,14 @@ const server = http.createServer((req, res) => {
 
     const method = req.method.toUpperCase();
 
+    const headers = req.headers;
+
     res.end(`Hello World\n`);
 
     console.log(
-        `${method} ${trimmedPath} Query: ${JSON.stringify(queryStringObject)}`
+        `${method} ${trimmedPath} Query: ${JSON.stringify(
+            queryStringObject
+        )} Headers: ${JSON.stringify(headers)}`
     );
 });
 

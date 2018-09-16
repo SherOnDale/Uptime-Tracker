@@ -3,3 +3,10 @@ foo: bar
 fizz: buzz
 apples: oranges
 red: blue
+
+###
+
+POST http://localhost:3000
+Content-Type: text/plain
+
+This is the body we are sending

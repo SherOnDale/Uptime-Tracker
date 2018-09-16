@@ -6,12 +6,14 @@ const server = http.createServer((req, res) => {
     const path = parsedUrl.pathname;
     const trimmedPath = path.replace(/^\/+|\/+$/g, '');
 
-    const method = req.method.toLowerCase();
+    const queryStringObject = parsedUrl.query;
+
+    const method = req.method.toUpperCase();
 
     res.end(`Hello World\n`);
 
     console.log(
-        `Request received on path ${trimmedPath} with method ${method}`
+        `${method} ${trimmedPath} Query: ${JSON.stringify(queryStringObject)}`
     );
 });
 

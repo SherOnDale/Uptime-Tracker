@@ -1,13 +1,27 @@
 ###PING ROUTE
 GET http://localhost:3000/ping
 
-###
+###CREATE A NEW USER
+POST http://localhost:3000/users
+Content-Type: application/json
 
-POST http://localhost:3000/ping
-foo: bar
-fizz: buzz
-apples: oranges
-red: blue
-Content-Type: text/plain
+{
+  "firstName": "Sherin",
+  "lastName": "Binu",
+  "phone": "+919894528840",
+  "password": "thisIsAPassword",
+  "tosAgreement": true
+}
 
-This is the body we are sending
+###GET AN EXISTING USER
+GET http://localhost:3000/users?phone=%2B919894528840
+
+###UPDATE AN EXISTING USER
+PUT http://localhost:3000/users
+Content-Type: application/json
+
+{
+}
+
+###DELETES AND EXISTING USER
+DELETE http://localhost:3000/users?phone=%2B919894528840

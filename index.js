@@ -4,7 +4,9 @@ const url = require('url');
 const fs = require('fs');
 const StringDecoder = require('string_decoder').StringDecoder;
 
-const config = require('./config');
+const config = require('./lib/config');
+const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers');
 
 const httpsServerOptions = {
     key: fs.readFileSync('./https/key.pem'),
@@ -40,7 +42,7 @@ const unifiedServer = (req, res) => {
     const path = parsedUrl.pathname;
     const trimmedPath = path.replace(/^\/+|\/+$/g, '');
 
-    const queryStringObject = parsedUrl.query;
+    const query = parsedUrl.query;
 
     const method = req.method.toUpperCase();
 
@@ -54,11 +56,11 @@ const unifiedServer = (req, res) => {
     req.on('end', () => {
         buffer += decoder.end();
 
-        console.log(
-            `${method} ${trimmedPath} Query: ${JSON.stringify(
-                queryStringObject
-            )} Headers: ${JSON.stringify(headers)} Payload: ${buffer}`
-        );
+        // console.log(
+        //     `${method} ${trimmedPath} Query: ${JSON.stringify(
+        //         query
+        //     )} Headers: ${JSON.stringify(headers)} Payload: ${buffer}`
+        // );
 
         const chosenHandler =
             typeof router[trimmedPath] !== 'undefined'
@@ -67,10 +69,10 @@ const unifiedServer = (req, res) => {
 
         const data = {
             trimmedPath,
-            queryStringObject,
+            query,
             method,
             headers,
-            payload: buffer
+            payload: helpers.parseJsonToObject(buffer)
         };
 
         chosenHandler(data, (statusCode = 200, payload = {}) => {
@@ -80,21 +82,12 @@ const unifiedServer = (req, res) => {
             res.writeHead(statusCode);
             res.end(payloadString);
 
-            console.log('Returning this response', statusCode, payload);
+            // console.log('Returning this response', statusCode, payload);
         });
     });
 };
 
-const handlers = {};
-
-handlers.ping = (data, callback) => {
-    callback(200);
-};
-
-handlers.notFound = (data, callback) => {
-    callback(404);
-};
-
 const router = {
-    ping: handlers.ping
+    ping: handlers.ping,
+    users: handlers.users
 };

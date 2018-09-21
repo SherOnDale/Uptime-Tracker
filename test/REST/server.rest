@@ -8,13 +8,14 @@ Content-Type: application/json
 {
   "firstName": "Sherin",
   "lastName": "Binu",
-  "phone": "+919894528840",
+  "phone": "+919894528841",
   "password": "thisIsAPassword",
   "tosAgreement": true
 }
 
 ###GET AN EXISTING USER
 GET http://localhost:3000/users?phone=%2B919894528840
+token: eLHPC2HOGmCFRGPv1ure
 
 ###UPDATE AN EXISTING USER
 PUT http://localhost:3000/users
@@ -23,5 +24,61 @@ Content-Type: application/json
 {
 }
 
-###DELETES AND EXISTING USER
+###DELETES AN EXISTING USER
 DELETE http://localhost:3000/users?phone=%2B919894528840
+token: eLHPC2HOGmCFRGPv1ure
+
+###CREATE A TOKEN
+POST http://localhost:3000/tokens
+Content-Type: application/json
+
+{
+  "phone": "+919894528840",
+  "password": "thisIsAPassword"
+}
+
+###GETS AN EXISTING TOKEN
+GET http://localhost:3000/tokens?id=ZsdkknS6XCl3N9nLv966
+
+###EXTENDS THE EXISTING TOKEN
+PUT http://localhost:3000/tokens?
+Content-Type: application/json
+
+{
+  "id": "ZsdkknS6XCl3N9nLv966",
+  "extend": true
+}
+
+###DELETES A TOKEN
+DELETE http://localhost:3000/tokens?id=ZsdkknS6XCl3N9nLv966
+
+###CREATES A CHECK
+POST http://localhost:3000/checks
+token: eLHPC2HOGmCFRGPv1ure
+Content-Type: application/json
+
+{
+  "protocol": "http",
+  "url": "google.com",
+  "method": "GET",
+  "successCodes": [200, 201],
+  "timeoutSeconds": 3
+}
+
+### GETS A CHECK
+GET http://localhost:3000/checks?id=ydj3SUIFQ0drZruqG6eJ
+token: eLHPC2HOGmCFRGPv1ure
+
+###UPDATES A CHECK
+PUT http://localhost:3000/checks
+token: eLHPC2HOGmCFRGPv1ure
+Content-Type: application/json
+
+{
+  "id": "ydj3SUIFQ0drZruqG6eJ",
+  "url": "google.com"
+}
+
+###DELETES A CHECK
+DELETE http://localhost:3000/checks?id=mBHtXzcFRuce5byVBtt6
+token: eLHPC2HOGmCFRGPv1ure

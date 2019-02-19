@@ -33,7 +33,7 @@ POST http://localhost:3000/tokens
 Content-Type: application/json
 
 {
-  "phone": "+919894528840",
+  "phone": "+919894528841",
   "password": "thisIsAPassword"
 }
 
@@ -54,12 +54,12 @@ DELETE http://localhost:3000/tokens?id=ZsdkknS6XCl3N9nLv966
 
 ###CREATES A CHECK
 POST http://localhost:3000/checks
-token: eLHPC2HOGmCFRGPv1ure
+token: SKt7VNQjtav0FdVrPuHO
 Content-Type: application/json
 
 {
-  "protocol": "http",
-  "url": "google.com",
+  "protocol": "https",
+  "url": "yahoo.com",
   "method": "GET",
   "successCodes": [200, 201],
   "timeoutSeconds": 3
